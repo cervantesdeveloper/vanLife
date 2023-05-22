@@ -1,10 +1,10 @@
-import React from "react"
+import {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
 
 export default function HostVans() {
-    const [vans, setVans] = React.useState([])
+    const [vans, setVans] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetch("/api/host/vans")
             .then(res => res.json())
             .then(data => setVans(data.vans))
@@ -12,7 +12,7 @@ export default function HostVans() {
 
     const hostVansEls = vans.map(van => (
         <Link
-            to={`/host/vans/${van.id}`}
+            to={van.id}
             key={van.id}
             className="host-van-link-wrapper"
         >

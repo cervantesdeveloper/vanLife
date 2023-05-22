@@ -8,8 +8,8 @@ import './App.css'
 import "../server"
 import Home from './pages/Home'
 import About from './pages/About'
-import VanDetail from './pages/VanDetail'
-import Vans from './pages/Vans'
+import VanDetail from './pages/Vans/VanDetail'
+import Vans from './pages/Vans/Vans'
 import Layout from "./components/Layout"
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
@@ -20,6 +20,7 @@ import HostVanDetail from './pages/Host/HostVanDetail'
 import HostVanInfo from "./pages/Host/HostVanInfo"
 import HostVanPhotos from "./pages/Host/HostVanPhotos"
 import HostVanPricing from "./pages/Host/HostVanPricing"
+import NotFound from './pages/NotFound'
 
 
 
@@ -46,6 +47,7 @@ function App() {
             <Route path='reviews' element={<Reviews/>}/>
           </Route>
           
+          <Route path='*' element={<NotFound />}/>
         </Route>
         
       </Routes>
