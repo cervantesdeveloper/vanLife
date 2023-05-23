@@ -5,7 +5,6 @@ export default function VanDetail(){
     const params = useParams();
     const location = useLocation();
     const [van, setVan] = useState(null)
-    console.log(location);
 
     useEffect(()=>{
         fetch(`/api/vans/${params.id}`)

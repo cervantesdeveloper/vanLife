@@ -1,15 +1,16 @@
-import { 
-  BrowserRouter, 
-  Routes,
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
   Route
-} from 'react-router-dom'
+} from "react-router-dom"
 
 import './App.css'
 import "../server"
 import Home from './pages/Home'
 import About from './pages/About'
 import VanDetail from './pages/Vans/VanDetail'
-import Vans from './pages/Vans/Vans'
+import Vans, { loader as vansLoader } from './pages/Vans/Vans'
 import Layout from "./components/Layout"
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
@@ -21,18 +22,17 @@ import HostVanInfo from "./pages/Host/HostVanInfo"
 import HostVanPhotos from "./pages/Host/HostVanPhotos"
 import HostVanPricing from "./pages/Host/HostVanPricing"
 import NotFound from './pages/NotFound'
+import Error from "./components/Error"
 
-
-
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
+const router = createBrowserRouter(createRoutesFromElements(
+        <Route path='/' element={<Layout />} errorElement={<Error />} >
           <Route index element={<Home/>}/>
           <Route path="about" element={<About/>}/>
-          <Route path='vans' element={<Vans/>}/>
+          <Route 
+            path='vans' 
+            element={<Vans/>} 
+            loader={vansLoader}
+          />
           <Route path='vans/:id' element={<VanDetail/>}/>
 
           <Route path='host' element={<HostLayout />}>
@@ -49,9 +49,13 @@ function App() {
           
           <Route path='*' element={<NotFound />}/>
         </Route>
-        
-      </Routes>
-    </BrowserRouter>
+
+))
+
+
+function App() {
+  return (
+    <RouterProvider router={router} />
   )
 }
 
